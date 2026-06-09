@@ -245,15 +245,7 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-hdr" style="background:var(--cinza)">🔗 URL do Apps Script</div>
-    <div class="card-body">
-      <div class="field">
-        <label>URL do Apps Script *</label>
-        <input type="url" id="cfg-script" placeholder="https://script.google.com/macros/s/...">
-      </div>
-    </div>
-  </div>
+  <!-- URL do Apps Script gravada internamente -->
 
   <button class="btn-gerarlink" onclick="gerarLink()">🔗 Gerar link para distribuir</button>
 
@@ -424,7 +416,7 @@ function gerarLink(){
   let hsaida   = val('cfg-hsaida');
   let setor    = getSetores();
   let obs      = val('cfg-obs').trim();
-  let script   = val('cfg-script').trim();
+  let script = 'https://script.google.com/macros/s/AKfycbzE4xbbkouxfg6TAAP8HFimFVkbZKwFEqw53kyxyAjeS1gAY57FNjLMIFfVrENYsScy/exec';
 
   if(!data)    { toast('⚠️ Informe a data da extra.');      return; }
   if(!turno)   { toast('⚠️ Selecione o turno.');            return; }
@@ -432,7 +424,6 @@ function gerarLink(){
   if(!hentrada){ toast('⚠️ Informe o horário de entrada.'); return; }
   if(!hsaida)  { toast('⚠️ Informe o horário de saída.');   return; }
   if(!setor)   { toast('⚠️ Selecione a abrangência.');      return; }
-  if(!script)  { toast('⚠️ Cole a URL do Apps Script.');    return; }
 
   let base = location.href.split('?')[0];
   let p = new URLSearchParams({ data, turno, tipo, he:hentrada, hs:hsaida, setor, obs, sc:script });
