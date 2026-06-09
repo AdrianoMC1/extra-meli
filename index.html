@@ -8,98 +8,90 @@
 <title>Confirmação de Extra · Meli</title>
 <style>
   :root {
-    --azul:      #1F3864;
-    --azul-mid:  #2E75B6;
-    --azul-l:    #ddeaf7;
-    --verde:     #1a6e38;
-    --verde-l:   #d4edda;
-    --vermelho:  #a00000;
-    --vermelho-l:#fde8e8;
-    --cinza:     #4a5568;
-    --bg:        #f0f4f8;
-    --card:      #ffffff;
-    --border:    #d0d8e4;
-    --text:      #1a2332;
-    --muted:     #5a6a7a;
-    --radius:    12px;
-    --radius-sm: 8px;
+    --azul:#1F3864;--azul-mid:#2E75B6;--azul-l:#ddeaf7;--verde:#1a6e38;--verde-l:#d4edda;
+    --vermelho:#a00000;--vermelho-l:#fde8e8;--cinza:#4a5568;--bg:#f0f4f8;--card:#ffffff;
+    --border:#d0d8e4;--text:#1a2332;--muted:#5a6a7a;--radius:12px;--radius-sm:8px;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI','Helvetica Neue',Arial,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding-bottom:2rem; }
-  header { background:var(--azul); color:#fff; text-align:center; padding:20px 16px 16px; box-shadow:0 2px 8px rgba(0,0,0,.25); }
-  header .logo { font-size:28px; margin-bottom:4px; }
-  header h1 { font-size:17px; font-weight:800; letter-spacing:.5px; }
-  header p  { font-size:12px; opacity:.65; margin-top:3px; }
-  .wrap { padding:14px 12px 0; max-width:480px; margin:0 auto; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:12px; overflow:hidden; }
-  .card-hdr { display:flex; align-items:center; gap:8px; padding:11px 14px; color:#fff; font-size:13px; font-weight:700; }
-  .card-body { padding:14px; display:flex; flex-direction:column; gap:10px; }
-  .extra-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .extra-item { background:var(--azul-l); border-radius:var(--radius-sm); padding:8px 10px; }
-  .extra-item .ei-label { font-size:10px; font-weight:700; color:var(--azul); text-transform:uppercase; letter-spacing:.4px; margin-bottom:3px; }
-  .extra-item .ei-value { font-size:14px; font-weight:700; color:var(--azul); }
-  .extra-item.full { grid-column:1/-1; }
-  .badge-tipo { display:inline-block; border-radius:20px; padding:4px 12px; font-size:12px; font-weight:800; }
-  .badge-ant { background:#fff3cd; color:#856404; }
-  .badge-ext { background:#e8d5f5; color:#6a0dad; }
-  .aviso { background:#fff8e1; border-left:4px solid #f59e0b; border-radius:var(--radius-sm); padding:10px 12px; font-size:13px; color:#78450a; line-height:1.5; }
-  .field label { display:block; font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; margin-bottom:5px; }
-  .field input,.field select { width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:15px; color:var(--text); background:#f8fafc; -webkit-appearance:none; transition:border-color .15s; }
-  .field input:focus,.field select:focus { outline:none; border-color:var(--azul-mid); background:#fff; }
-  .g2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .ader-wrap { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px; }
-  .btn-ader { padding:16px 8px; border:2px solid var(--border); border-radius:var(--radius); background:var(--card); cursor:pointer; text-align:center; transition:all .15s; -webkit-appearance:none; }
-  .btn-ader .ader-icon { font-size:28px; display:block; margin-bottom:6px; }
-  .btn-ader .ader-txt  { font-size:14px; font-weight:700; color:var(--muted); }
-  .btn-ader.sel-sim { background:var(--verde-l); border-color:var(--verde); }
-  .btn-ader.sel-sim .ader-txt { color:var(--verde); }
-  .btn-ader.sel-nao { background:var(--vermelho-l); border-color:var(--vermelho); }
-  .btn-ader.sel-nao .ader-txt { color:var(--vermelho); }
-  .btn-enviar { width:100%; padding:15px; background:var(--azul); color:#fff; border:none; border-radius:var(--radius); font-size:16px; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 3px 12px rgba(31,56,100,.35); transition:opacity .15s; margin-top:4px; margin-bottom:12px; }
-  .btn-enviar:active { opacity:.85; }
-  .btn-enviar:disabled { opacity:.5; cursor:not-allowed; }
-  #page-sucesso { display:none; padding:20px 12px; max-width:480px; margin:0 auto; }
-  .sucesso-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px 20px; text-align:center; }
-  .sucesso-icon  { font-size:56px; margin-bottom:12px; }
-  .sucesso-title { font-size:20px; font-weight:800; margin-bottom:8px; }
-  .sucesso-sub   { font-size:14px; color:var(--muted); line-height:1.6; }
-  .sucesso-resumo { background:var(--azul-l); border-radius:var(--radius-sm); padding:12px 14px; margin:16px 0; text-align:left; font-size:13px; line-height:1.8; color:var(--azul); }
-  #page-erro { display:none; padding:20px 12px; max-width:480px; margin:0 auto; }
-  .erro-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px 20px; text-align:center; }
-  .erro-icon  { font-size:48px; margin-bottom:12px; }
-  .erro-title { font-size:18px; font-weight:800; color:var(--vermelho); margin-bottom:8px; }
-  .erro-sub   { font-size:13px; color:var(--muted); line-height:1.6; }
-  /* CONFIG */
-  #page-config { display:none; padding:14px 12px 0; max-width:480px; margin:0 auto; }
-  .config-hdr { background:var(--azul); color:#fff; border-radius:var(--radius); padding:14px 16px; margin-bottom:12px; text-align:center; }
-  .config-hdr h2 { font-size:15px; font-weight:800; }
-  .config-hdr p  { font-size:12px; opacity:.7; margin-top:3px; }
-  .btn-gerarlink { width:100%; padding:14px; background:var(--verde); color:#fff; border:none; border-radius:var(--radius); font-size:15px; font-weight:800; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; margin-top:4px; margin-bottom:8px; box-shadow:0 3px 10px rgba(26,110,56,.3); transition:opacity .15s; }
-  .btn-gerarlink:active { opacity:.85; }
-  .link-result { display:none; background:#f0fff4; border:1.5px solid var(--verde); border-radius:var(--radius-sm); padding:12px 14px; margin-bottom:8px; }
-  .link-result p { font-size:12px; color:var(--verde); font-weight:700; margin-bottom:8px; }
-  .link-box { background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:8px 10px; font-size:12px; color:var(--muted); word-break:break-all; margin-bottom:8px; line-height:1.5; }
-  .btn-copiar { width:100%; padding:10px; background:var(--azul); color:#fff; border:none; border-radius:var(--radius-sm); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:6px; transition:opacity .15s; }
-  .btn-wpp { width:100%; padding:10px; background:#128C7E; color:#fff; border:none; border-radius:var(--radius-sm); font-size:13px; font-weight:700; cursor:pointer; transition:opacity .15s; }
-  .btn-voltar-config { width:100%; padding:11px; background:transparent; color:var(--muted); border:1.5px solid var(--border); border-radius:var(--radius); font-size:13px; cursor:pointer; margin-bottom:12px; }
-  /* CHECKBOXES SETOR */
-  .setor-opcoes { display:none; flex-direction:column; gap:8px; margin-top:6px; }
-  .setor-opcoes.show { display:flex; }
-  .chk-row { display:flex; align-items:center; gap:10px; font-size:14px; padding:8px 10px; border:1.5px solid var(--border); border-radius:var(--radius-sm); background:#f8fafc; cursor:pointer; transition:background .15s; }
-  .chk-row:hover { background:var(--azul-l); }
-  .chk-row input[type=checkbox] { width:18px; height:18px; accent-color:var(--azul); flex-shrink:0; }
-  .chk-row.checked { background:var(--azul-l); border-color:var(--azul-mid); }
-  .outro-input { display:none; margin-top:4px; }
-  .outro-input.show { display:block; }
-  .radio-group { display:flex; flex-direction:column; gap:8px; }
-  .radio-row { display:flex; align-items:center; gap:10px; font-size:14px; padding:10px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); background:#f8fafc; cursor:pointer; transition:background .15s; }
-  .radio-row input[type=radio] { width:18px; height:18px; accent-color:var(--azul); flex-shrink:0; }
-  .radio-row.checked { background:var(--azul-l); border-color:var(--azul-mid); font-weight:600; }
-  /* TOAST */
-  #toast { display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#222; color:#fff; border-radius:20px; padding:10px 20px; font-size:13px; font-weight:600; z-index:999; white-space:nowrap; box-shadow:0 4px 16px rgba(0,0,0,.35); }
-  #toast.show { display:block; }
-  .spinner { display:inline-block; width:18px; height:18px; border:2px solid rgba(255,255,255,.4); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
-  @keyframes spin { to { transform:rotate(360deg); } }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:2rem}
+  header{background:var(--azul);color:#fff;text-align:center;padding:20px 16px 16px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  header .logo{font-size:28px;margin-bottom:4px}
+  header h1{font-size:17px;font-weight:800;letter-spacing:.5px}
+  header p{font-size:12px;opacity:.65;margin-top:3px}
+  .wrap{padding:14px 12px 0;max-width:480px;margin:0 auto}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden}
+  .card-hdr{display:flex;align-items:center;gap:8px;padding:11px 14px;color:#fff;font-size:13px;font-weight:700}
+  .card-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+  .extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .extra-item{background:var(--azul-l);border-radius:var(--radius-sm);padding:8px 10px}
+  .extra-item .ei-label{font-size:10px;font-weight:700;color:var(--azul);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+  .extra-item .ei-value{font-size:14px;font-weight:700;color:var(--azul)}
+  .extra-item.full{grid-column:1/-1}
+  .badge-tipo{display:inline-block;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:800}
+  .badge-ant{background:#fff3cd;color:#856404}
+  .badge-ext{background:#e8d5f5;color:#6a0dad}
+  .aviso{background:#fff8e1;border-left:4px solid #f59e0b;border-radius:var(--radius-sm);padding:10px 12px;font-size:13px;color:#78450a;line-height:1.5}
+  .prazo-banner{background:#fff3cd;border:2px solid #f59e0b;border-radius:var(--radius-sm);padding:12px 14px;text-align:center;font-size:14px;font-weight:700;color:#856404;margin-bottom:4px}
+  .prazo-vencido{background:var(--vermelho-l);border:2px solid var(--vermelho);border-radius:var(--radius-sm);padding:12px 14px;text-align:center;font-size:14px;font-weight:700;color:var(--vermelho)}
+  .field label{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+  .field input,.field select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px;color:var(--text);background:#f8fafc;-webkit-appearance:none;transition:border-color .15s}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--azul-mid);background:#fff}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .g3{display:grid;grid-template-columns:1fr 80px;gap:8px;align-items:center}
+  .ader-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+  .btn-ader{padding:16px 8px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;text-align:center;transition:all .15s;-webkit-appearance:none}
+  .btn-ader .ader-icon{font-size:28px;display:block;margin-bottom:6px}
+  .btn-ader .ader-txt{font-size:14px;font-weight:700;color:var(--muted)}
+  .btn-ader.sel-sim{background:var(--verde-l);border-color:var(--verde)}
+  .btn-ader.sel-sim .ader-txt{color:var(--verde)}
+  .btn-ader.sel-nao{background:var(--vermelho-l);border-color:var(--vermelho)}
+  .btn-ader.sel-nao .ader-txt{color:var(--vermelho)}
+  .btn-enviar{width:100%;padding:15px;background:var(--azul);color:#fff;border:none;border-radius:var(--radius);font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 3px 12px rgba(31,56,100,.35);transition:opacity .15s;margin-top:4px;margin-bottom:12px}
+  .btn-enviar:active{opacity:.85}
+  .btn-enviar:disabled{opacity:.5;cursor:not-allowed}
+  #page-sucesso{display:none;padding:20px 12px;max-width:480px;margin:0 auto}
+  .sucesso-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 20px;text-align:center}
+  .sucesso-icon{font-size:56px;margin-bottom:12px}
+  .sucesso-title{font-size:20px;font-weight:800;margin-bottom:8px}
+  .sucesso-sub{font-size:14px;color:var(--muted);line-height:1.6}
+  .sucesso-resumo{background:var(--azul-l);border-radius:var(--radius-sm);padding:12px 14px;margin:16px 0;text-align:left;font-size:13px;line-height:1.8;color:var(--azul)}
+  #page-erro{display:none;padding:20px 12px;max-width:480px;margin:0 auto}
+  .erro-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 20px;text-align:center}
+  .erro-icon{font-size:48px;margin-bottom:12px}
+  .erro-title{font-size:18px;font-weight:800;color:var(--vermelho);margin-bottom:8px}
+  .erro-sub{font-size:13px;color:var(--muted);line-height:1.6}
+  #page-encerrado{display:none;padding:20px 12px;max-width:480px;margin:0 auto}
+  .encerrado-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px 20px;text-align:center}
+  #page-config{display:none;padding:14px 12px 0;max-width:480px;margin:0 auto}
+  .config-hdr{background:var(--azul);color:#fff;border-radius:var(--radius);padding:14px 16px;margin-bottom:12px;text-align:center}
+  .config-hdr h2{font-size:15px;font-weight:800}
+  .config-hdr p{font-size:12px;opacity:.7;margin-top:3px}
+  .btn-gerarlink{width:100%;padding:14px;background:var(--verde);color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;margin-bottom:8px;box-shadow:0 3px 10px rgba(26,110,56,.3);transition:opacity .15s}
+  .btn-gerarlink:active{opacity:.85}
+  .link-result{display:none;background:#f0fff4;border:1.5px solid var(--verde);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:8px}
+  .link-result p{font-size:12px;color:var(--verde);font-weight:700;margin-bottom:8px}
+  .link-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 10px;font-size:12px;color:var(--muted);word-break:break-all;margin-bottom:8px;line-height:1.5}
+  .btn-copiar{width:100%;padding:10px;background:var(--azul);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;margin-bottom:6px;transition:opacity .15s}
+  .btn-wpp{width:100%;padding:10px;background:#128C7E;color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;transition:opacity .15s}
+  .btn-voltar-config{width:100%;padding:11px;background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:var(--radius);font-size:13px;cursor:pointer;margin-bottom:12px}
+  .setor-opcoes{display:none;flex-direction:column;gap:8px;margin-top:6px}
+  .setor-opcoes.show{display:flex}
+  .chk-row{display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#f8fafc;transition:background .15s}
+  .chk-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--azul);flex-shrink:0}
+  .chk-row.checked{background:var(--azul-l);border-color:var(--azul-mid)}
+  .chk-label{flex:1;font-size:14px}
+  .chk-qty{width:60px;padding:6px 8px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;text-align:center;background:#fff;display:none}
+  .chk-qty.show{display:block}
+  .outro-input{display:none;margin-top:4px}
+  .outro-input.show{display:block}
+  .radio-group{display:flex;flex-direction:column;gap:8px}
+  .radio-row{display:flex;align-items:center;gap:10px;font-size:14px;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#f8fafc;cursor:pointer;transition:background .15s}
+  .radio-row input[type=radio]{width:18px;height:18px;accent-color:var(--azul);flex-shrink:0}
+  .radio-row.checked{background:var(--azul-l);border-color:var(--azul-mid);font-weight:600}
+  #toast{display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#222;color:#fff;border-radius:20px;padding:10px 20px;font-size:13px;font-weight:600;z-index:999;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.35)}
+  #toast.show{display:block}
+  .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -113,6 +105,7 @@
 <!-- COLABORADOR -->
 <div id="page-colab">
 <div class="wrap">
+  <div id="prazo-box"></div>
   <div class="card">
     <div class="card-hdr" style="background:var(--azul)">📅 Detalhes da Extra</div>
     <div class="card-body">
@@ -129,12 +122,8 @@
         <div class="field"><label>Setor *</label>
           <select id="c-setor">
             <option value="">Selecione</option>
-            <option>ICQA</option>
-            <option>Picking</option>
-            <option>Packing</option>
-            <option>Inbound</option>
-            <option>Shipping</option>
-            <option>Outro</option>
+            <option>ICQA</option><option>Picking</option><option>Packing</option>
+            <option>Inbound</option><option>Shipping</option><option>Outro</option>
           </select>
         </div>
       </div>
@@ -146,12 +135,10 @@
       <p style="font-size:13px;color:var(--muted);line-height:1.5">Você confirma sua participação nesta extra?</p>
       <div class="ader-wrap">
         <button class="btn-ader" id="btn-sim" onclick="selecionarAder('sim')">
-          <span class="ader-icon">✅</span>
-          <span class="ader-txt">SIM, vou participar</span>
+          <span class="ader-icon">✅</span><span class="ader-txt">SIM, vou participar</span>
         </button>
         <button class="btn-ader" id="btn-nao" onclick="selecionarAder('nao')">
-          <span class="ader-icon">❌</span>
-          <span class="ader-txt">NÃO vou participar</span>
+          <span class="ader-icon">❌</span><span class="ader-txt">NÃO vou participar</span>
         </button>
       </div>
     </div>
@@ -179,6 +166,15 @@
   </div>
 </div>
 
+<!-- ENCERRADO -->
+<div id="page-encerrado">
+  <div class="encerrado-card">
+    <div class="erro-icon">🔒</div>
+    <div class="erro-title" style="color:var(--cinza)">Prazo encerrado</div>
+    <div class="erro-sub">O prazo para confirmar esta extra foi encerrado.<br>Entre em contato com seu gestor.</div>
+  </div>
+</div>
+
 <!-- CONFIG (Flow) -->
 <div id="page-config">
   <div class="config-hdr">
@@ -194,10 +190,7 @@
         <div class="field"><label>Turno *</label>
           <select id="cfg-turno">
             <option value="">Selecione</option>
-            <option>T1</option>
-            <option>T2</option>
-            <option>T3</option>
-            <option>T4</option>
+            <option>T1</option><option>T2</option><option>T3</option><option>T4</option>
           </select>
         </div>
       </div>
@@ -212,10 +205,11 @@
         <div class="field"><label>Horário de entrada *</label><input type="time" id="cfg-hentrada"></div>
         <div class="field"><label>Horário de saída *</label><input type="time" id="cfg-hsaida"></div>
       </div>
+      <div class="field"><label>⏰ Prazo limite para resposta *</label><input type="time" id="cfg-prazo" placeholder="Ex: 18:00"></div>
 
-      <!-- SETOR -->
+      <!-- ABRANGÊNCIA -->
       <div class="field"><label>Abrangência *</label>
-        <div class="radio-group" id="abrangencia-group">
+        <div class="radio-group">
           <label class="radio-row" id="lbl-completo">
             <input type="radio" name="abrangencia" value="completo" onchange="onAbrangencia(this)">
             🏭 Extra Completo — todos os setores
@@ -228,12 +222,15 @@
       </div>
 
       <div class="setor-opcoes" id="setor-opcoes">
-        <label class="chk-row" id="chk-icqa"><input type="checkbox" value="ICQA" onchange="onChk(this)"> ICQA</label>
-        <label class="chk-row" id="chk-pick"><input type="checkbox" value="Picking" onchange="onChk(this)"> Picking</label>
-        <label class="chk-row" id="chk-pack"><input type="checkbox" value="Packing" onchange="onChk(this)"> Packing</label>
-        <label class="chk-row" id="chk-inb"><input type="checkbox" value="Inbound" onchange="onChk(this)"> Inbound</label>
-        <label class="chk-row" id="chk-ship"><input type="checkbox" value="Shipping" onchange="onChk(this)"> Shipping</label>
-        <label class="chk-row" id="chk-outro"><input type="checkbox" value="outro" onchange="onChk(this)"> Outro</label>
+        <div style="display:grid;grid-template-columns:1fr 80px;gap:6px;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:0 10px">
+          <span>Setor</span><span style="text-align:center">Vagas</span>
+        </div>
+        <label class="chk-row" id="chk-icqa"><input type="checkbox" value="ICQA" onchange="onChk(this)"><span class="chk-label">ICQA</span><input type="number" class="chk-qty" id="qty-icqa" min="1" placeholder="0"></label>
+        <label class="chk-row" id="chk-pick"><input type="checkbox" value="Picking" onchange="onChk(this)"><span class="chk-label">Picking</span><input type="number" class="chk-qty" id="qty-pick" min="1" placeholder="0"></label>
+        <label class="chk-row" id="chk-pack"><input type="checkbox" value="Packing" onchange="onChk(this)"><span class="chk-label">Packing</span><input type="number" class="chk-qty" id="qty-pack" min="1" placeholder="0"></label>
+        <label class="chk-row" id="chk-inb"><input type="checkbox" value="Inbound" onchange="onChk(this)"><span class="chk-label">Inbound</span><input type="number" class="chk-qty" id="qty-inb" min="1" placeholder="0"></label>
+        <label class="chk-row" id="chk-ship"><input type="checkbox" value="Shipping" onchange="onChk(this)"><span class="chk-label">Shipping</span><input type="number" class="chk-qty" id="qty-ship" min="1" placeholder="0"></label>
+        <label class="chk-row" id="chk-outro"><input type="checkbox" value="outro" onchange="onChk(this)"><span class="chk-label">Outro</span><input type="number" class="chk-qty" id="qty-outro" min="1" placeholder="0"></label>
         <div class="outro-input" id="outro-input">
           <input type="text" id="cfg-outro" placeholder="Digite o setor...">
         </div>
@@ -244,8 +241,6 @@
       </div>
     </div>
   </div>
-
-  <!-- URL do Apps Script gravada internamente -->
 
   <button class="btn-gerarlink" onclick="gerarLink()">🔗 Gerar link para distribuir</button>
 
@@ -262,107 +257,115 @@
 <div id="toast"></div>
 
 <script>
-function v(id){ return document.getElementById(id); }
-function val(id){ return (v(id)||{}).value||''; }
-function toast(msg,dur=2200){ let t=v('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),dur); }
-function showPage(pg){ ['page-colab','page-sucesso','page-erro','page-config'].forEach(p=>{ v(p).style.display=p===pg?'block':'none'; }); }
-function fmtData(iso){ if(!iso) return '—'; let [y,m,d]=iso.split('-'); return `${d}/${m}/${y}`; }
-function fmtTipo(t){ if(t==='antecipacao') return '⬆️ Antecipação'; if(t==='extensao') return '⏱️ Extensão'; return t||'—'; }
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE4xbbkouxfg6TAAP8HFimFVkbZKwFEqw53kyxyAjeS1gAY57FNjLMIFfVrENYsScy/exec';
+
+function v(id){return document.getElementById(id)}
+function val(id){return(v(id)||{}).value||''}
+function toast(msg,dur=2200){let t=v('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),dur)}
+function showPage(pg){['page-colab','page-sucesso','page-erro','page-config','page-encerrado'].forEach(p=>{v(p).style.display=p===pg?'block':'none'})}
+function fmtData(iso){if(!iso)return'—';let[y,m,d]=iso.split('-');return`${d}/${m}/${y}`}
+function fmtTipo(t){if(t==='antecipacao')return'⬆️ Antecipação';if(t==='extensao')return'⏱️ Extensão';return t||'—'}
 
 const params = new URLSearchParams(location.search);
 const EXTRA = {
-  data:     params.get('data')||'',
-  tipo:     params.get('tipo')||'',
-  turno:    params.get('turno')||'',
-  hentrada: params.get('he')||'',
-  hsaida:   params.get('hs')||'',
-  setor:    params.get('setor')||'',
-  obs:      params.get('obs')||'',
-  script:   params.get('sc')||''
+  data:params.get('data')||'',tipo:params.get('tipo')||'',turno:params.get('turno')||'',
+  hentrada:params.get('he')||'',hsaida:params.get('hs')||'',setor:params.get('setor')||'',
+  obs:params.get('obs')||'',prazo:params.get('prazo')||'',vagas:params.get('vagas')||''
 };
 const isConfig  = params.get('config')==='1';
-const hasParams = EXTRA.data && EXTRA.tipo && EXTRA.script;
+const hasParams = EXTRA.data && EXTRA.tipo;
 
 window.addEventListener('DOMContentLoaded',()=>{
-  if(isConfig){
-    showPage('page-config');
-    v('cfg-data').value = new Date().toISOString().slice(0,10);
-    return;
+  if(isConfig){showPage('page-config');v('cfg-data').value=new Date().toISOString().slice(0,10);return}
+  if(!hasParams){showPage('page-erro');return}
+  // Verificar prazo
+  if(EXTRA.prazo){
+    let hoje = new Date();
+    let dataExtra = EXTRA.data; // yyyy-mm-dd
+    let[hh,mm] = EXTRA.prazo.split(':');
+    let limite = new Date(`${dataExtra}T${hh}:${mm}:00`);
+    if(hoje > limite){showPage('page-encerrado');return}
+    // Mostrar banner de prazo
+    let diff = Math.round((limite - hoje) / 60000);
+    let txt = diff > 60
+      ? `⏰ Responda até as ${EXTRA.prazo} — ${Math.floor(diff/60)}h${diff%60}min restantes`
+      : `⏰ Responda até as ${EXTRA.prazo} — ${diff} minutos restantes!`;
+    v('prazo-box').innerHTML = `<div class="prazo-banner">${txt}</div>`;
   }
-  if(!hasParams){ showPage('page-erro'); return; }
   showPage('page-colab');
   renderExtra();
 });
 
 function renderExtra(){
-  let tipo = EXTRA.tipo;
-  let badgeClass = tipo==='antecipacao' ? 'badge-ant' : 'badge-ext';
-  let aviso = tipo==='antecipacao'
-    ? '⬆️ <strong>Antecipação:</strong> Você deverá <strong>chegar antes</strong> do seu horário normal.'
-    : '⏱️ <strong>Extensão:</strong> Você deverá <strong>ficar além</strong> do seu horário normal.';
+  let tipo=EXTRA.tipo;
+  let badgeClass=tipo==='antecipacao'?'badge-ant':'badge-ext';
+  let aviso=tipo==='antecipacao'
+    ?'⬆️ <strong>Antecipação:</strong> Você deverá <strong>chegar antes</strong> do seu horário normal.'
+    :'⏱️ <strong>Extensão:</strong> Você deverá <strong>ficar além</strong> do seu horário normal.';
 
-  v('extra-grid').innerHTML = `
+  let vagasHtml = EXTRA.vagas ? `<div class="extra-item full"><div class="ei-label">Vagas por área</div><div class="ei-value" style="font-size:13px">${decodeURIComponent(EXTRA.vagas)}</div></div>` : '';
+
+  v('extra-grid').innerHTML=`
     <div class="extra-item"><div class="ei-label">Data</div><div class="ei-value">${fmtData(EXTRA.data)}</div></div>
     <div class="extra-item"><div class="ei-label">Turno</div><div class="ei-value">${EXTRA.turno||'—'}</div></div>
     <div class="extra-item"><div class="ei-label">Tipo</div><div class="ei-value"><span class="badge-tipo ${badgeClass}">${fmtTipo(tipo)}</span></div></div>
     <div class="extra-item"><div class="ei-label">Entrada</div><div class="ei-value">${EXTRA.hentrada||'—'}</div></div>
     <div class="extra-item"><div class="ei-label">Saída</div><div class="ei-value">${EXTRA.hsaida||'—'}</div></div>
-    ${EXTRA.setor ? `<div class="extra-item full"><div class="ei-label">Área</div><div class="ei-value">${EXTRA.setor}</div></div>` : ''}
+    ${EXTRA.prazo?`<div class="extra-item"><div class="ei-label">Prazo</div><div class="ei-value">${EXTRA.prazo}</div></div>`:''}
+    ${EXTRA.setor?`<div class="extra-item full"><div class="ei-label">Área</div><div class="ei-value">${EXTRA.setor}</div></div>`:''}
+    ${vagasHtml}
   `;
-  v('extra-aviso').innerHTML = aviso + (EXTRA.obs ? `<br><br>📌 <strong>Obs:</strong> ${EXTRA.obs}` : '');
+  v('extra-aviso').innerHTML=aviso+(EXTRA.obs?`<br><br>📌 <strong>Obs:</strong> ${EXTRA.obs}`:'');
 }
 
-// ADERÊNCIA
-let aderencia = null;
+let aderencia=null;
 function selecionarAder(opcao){
-  aderencia = opcao;
-  v('btn-sim').className = 'btn-ader'+(opcao==='sim'?' sel-sim':'');
-  v('btn-nao').className = 'btn-ader'+(opcao==='nao'?' sel-nao':'');
-  v('btn-enviar').disabled = false;
+  aderencia=opcao;
+  v('btn-sim').className='btn-ader'+(opcao==='sim'?' sel-sim':'');
+  v('btn-nao').className='btn-ader'+(opcao==='nao'?' sel-nao':'');
+  v('btn-enviar').disabled=false;
 }
 
-// ENVIAR
 async function enviar(){
-  let nome  = val('c-nome').trim();
-  let mat   = val('c-mat').trim();
-  let setor = val('c-setor');
-  if(!nome)     { toast('⚠️ Digite seu nome completo.'); return; }
-  if(!mat)      { toast('⚠️ Digite sua matrícula.');     return; }
-  if(!setor)    { toast('⚠️ Selecione seu setor.');      return; }
-  if(!aderencia){ toast('⚠️ Confirme sua aderência.');   return; }
+  let nome=val('c-nome').trim(),mat=val('c-mat').trim(),setor=val('c-setor');
+  if(!nome){toast('⚠️ Digite seu nome completo.');return}
+  if(!mat){toast('⚠️ Digite sua matrícula.');return}
+  if(!setor){toast('⚠️ Selecione seu setor.');return}
+  if(!aderencia){toast('⚠️ Confirme sua aderência.');return}
 
-  let btn = v('btn-enviar');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Enviando...';
+  // Verificar prazo novamente antes de enviar
+  if(EXTRA.prazo){
+    let[hh,mm]=EXTRA.prazo.split(':');
+    let limite=new Date(`${EXTRA.data}T${hh}:${mm}:00`);
+    if(new Date()>limite){showPage('page-encerrado');return}
+  }
 
-  let payload = {
-    timestamp:    new Date().toLocaleString('pt-BR'),
-    data_extra:   fmtData(EXTRA.data),
-    turno:        EXTRA.turno,
-    tipo:         fmtTipo(EXTRA.tipo),
-    hora_entrada: EXTRA.hentrada,
-    hora_saida:   EXTRA.hsaida,
-    area_extra:   EXTRA.setor,
-    nome, matricula: mat, setor,
-    aderencia: aderencia==='sim' ? 'SIM' : 'NÃO'
+  let btn=v('btn-enviar');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span> Enviando...';
+
+  let payload={
+    timestamp:new Date().toLocaleString('pt-BR'),
+    data_extra:fmtData(EXTRA.data),turno:EXTRA.turno,tipo:fmtTipo(EXTRA.tipo),
+    hora_entrada:EXTRA.hentrada,hora_saida:EXTRA.hsaida,area_extra:EXTRA.setor,
+    nome,matricula:mat,setor,aderencia:aderencia==='sim'?'SIM':'NÃO'
   };
 
-  try {
-    await fetch(EXTRA.script, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+  try{
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     mostrarSucesso(payload);
-  } catch(e) {
-    btn.disabled = false;
-    btn.innerHTML = 'Enviar confirmação';
+  }catch(e){
+    btn.disabled=false;btn.innerHTML='Enviar confirmação';
     toast('❌ Erro de conexão. Tente novamente.');
   }
 }
 
 function mostrarSucesso(p){
-  let sim = p.aderencia==='SIM';
-  v('suc-icon').textContent   = sim ? '✅' : '❌';
-  v('suc-titulo').textContent = sim ? 'Confirmado! Até lá!' : 'Registrado. Falta avisada.';
-  v('suc-titulo').style.color = sim ? 'var(--verde)' : 'var(--vermelho)';
-  v('suc-resumo').innerHTML = `
+  let sim=p.aderencia==='SIM';
+  v('suc-icon').textContent=sim?'✅':'❌';
+  v('suc-titulo').textContent=sim?'Confirmado! Até lá!':'Registrado. Falta avisada.';
+  v('suc-titulo').style.color=sim?'var(--verde)':'var(--vermelho)';
+  v('suc-resumo').innerHTML=`
     <strong>Nome:</strong> ${p.nome}<br>
     <strong>Matrícula:</strong> ${p.matricula}<br>
     <strong>Setor:</strong> ${p.setor}<br>
@@ -375,82 +378,92 @@ function mostrarSucesso(p){
   showPage('page-sucesso');
 }
 
-// CONFIG — abrangência
 function onAbrangencia(radio){
   document.querySelectorAll('.radio-row').forEach(r=>r.classList.remove('checked'));
   radio.closest('.radio-row').classList.add('checked');
-  let opcoes = v('setor-opcoes');
-  if(radio.value==='area') opcoes.classList.add('show');
-  else opcoes.classList.remove('show');
+  v('setor-opcoes').classList.toggle('show',radio.value==='area');
 }
 
 function onChk(chk){
-  chk.closest('.chk-row').classList.toggle('checked', chk.checked);
-  let outroCb = v('chk-outro').querySelector('input');
-  v('outro-input').classList.toggle('show', outroCb.checked);
+  let row=chk.closest('.chk-row');
+  row.classList.toggle('checked',chk.checked);
+  let qtyId='qty-'+chk.value.toLowerCase();
+  if(chk.value==='outro'){
+    v('outro-input').classList.toggle('show',chk.checked);
+    qtyId='qty-outro';
+  }
+  let qty=document.getElementById(qtyId);
+  if(qty) qty.classList.toggle('show',chk.checked);
 }
 
-function getSetores(){
-  let abr = document.querySelector('input[name=abrangencia]:checked');
-  if(!abr) return '';
-  if(abr.value==='completo') return 'Todos';
-  let sels = [];
-  document.querySelectorAll('#setor-opcoes input[type=checkbox]:checked').forEach(c=>{
-    if(c.value==='outro'){
-      let txt = val('cfg-outro').trim();
-      if(txt) sels.push(txt);
-    } else {
-      sels.push(c.value);
+function getSetoresEVagas(){
+  let abr=document.querySelector('input[name=abrangencia]:checked');
+  if(!abr)return{setor:'',vagas:''};
+  if(abr.value==='completo')return{setor:'Todos',vagas:''};
+
+  let setores=[],vagas=[];
+  let map=[
+    {cb:'chk-icqa',qty:'qty-icqa',nome:'ICQA'},
+    {cb:'chk-pick',qty:'qty-pick',nome:'Picking'},
+    {cb:'chk-pack',qty:'qty-pack',nome:'Packing'},
+    {cb:'chk-inb', qty:'qty-inb', nome:'Inbound'},
+    {cb:'chk-ship',qty:'qty-ship',nome:'Shipping'},
+    {cb:'chk-outro',qty:'qty-outro',nome:val('cfg-outro').trim()||'Outro'},
+  ];
+  map.forEach(m=>{
+    let cb=v(m.cb).querySelector('input[type=checkbox]');
+    if(cb&&cb.checked){
+      let nome=m.nome;
+      setores.push(nome);
+      let qty=val(m.qty);
+      vagas.push(`${nome}: ${qty||'?'}`);
     }
   });
-  return sels.join(', ');
+  return{setor:setores.join(', '),vagas:vagas.join(' | ')};
 }
 
-// GERAR LINK
-let linkGerado = '';
+let linkGerado='';
 function gerarLink(){
-  let data     = val('cfg-data');
-  let turno    = val('cfg-turno');
-  let tipo     = val('cfg-tipo');
-  let hentrada = val('cfg-hentrada');
-  let hsaida   = val('cfg-hsaida');
-  let setor    = getSetores();
-  let obs      = val('cfg-obs').trim();
-  let script = 'https://script.google.com/macros/s/AKfycbzE4xbbkouxfg6TAAP8HFimFVkbZKwFEqw53kyxyAjeS1gAY57FNjLMIFfVrENYsScy/exec';
+  let data=val('cfg-data'),turno=val('cfg-turno'),tipo=val('cfg-tipo');
+  let hentrada=val('cfg-hentrada'),hsaida=val('cfg-hsaida'),prazo=val('cfg-prazo');
+  let obs=val('cfg-obs').trim();
+  let{setor,vagas}=getSetoresEVagas();
 
-  if(!data)    { toast('⚠️ Informe a data da extra.');      return; }
-  if(!turno)   { toast('⚠️ Selecione o turno.');            return; }
-  if(!tipo)    { toast('⚠️ Selecione o tipo.');             return; }
-  if(!hentrada){ toast('⚠️ Informe o horário de entrada.'); return; }
-  if(!hsaida)  { toast('⚠️ Informe o horário de saída.');   return; }
-  if(!setor)   { toast('⚠️ Selecione a abrangência.');      return; }
+  if(!data){toast('⚠️ Informe a data da extra.');return}
+  if(!turno){toast('⚠️ Selecione o turno.');return}
+  if(!tipo){toast('⚠️ Selecione o tipo.');return}
+  if(!hentrada){toast('⚠️ Informe o horário de entrada.');return}
+  if(!hsaida){toast('⚠️ Informe o horário de saída.');return}
+  if(!prazo){toast('⚠️ Informe o prazo limite para resposta.');return}
+  if(!setor){toast('⚠️ Selecione a abrangência.');return}
 
-  let base = location.href.split('?')[0];
-  let p = new URLSearchParams({ data, turno, tipo, he:hentrada, hs:hsaida, setor, obs, sc:script });
-  linkGerado = base + '?' + p.toString();
-  v('link-box').textContent = linkGerado;
-  v('link-result').style.display = 'block';
+  let base=location.href.split('?')[0];
+  let p=new URLSearchParams({data,turno,tipo,he:hentrada,hs:hsaida,prazo,setor,vagas,obs});
+  linkGerado=base+'?'+p.toString();
+  v('link-box').textContent=linkGerado;
+  v('link-result').style.display='block';
   toast('✅ Link gerado!');
-  window.scrollTo(0, v('link-result').offsetTop - 20);
+  window.scrollTo(0,v('link-result').offsetTop-20);
 }
 
 function copiarLink(){
   navigator.clipboard.writeText(linkGerado)
     .then(()=>toast('✅ Link copiado!'))
-    .catch(()=>{ let ta=document.createElement('textarea'); ta.value=linkGerado; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); toast('✅ Link copiado!'); });
+    .catch(()=>{let ta=document.createElement('textarea');ta.value=linkGerado;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✅ Link copiado!')});
 }
 
 function enviarWpp(){
-  let data  = fmtData(val('cfg-data'));
-  let turno = val('cfg-turno');
-  let tipo  = val('cfg-tipo')==='antecipacao' ? 'Antecipação' : 'Extensão';
-  let setor = getSetores();
-  let msg = encodeURIComponent(
+  let data=fmtData(val('cfg-data')),turno=val('cfg-turno');
+  let tipo=val('cfg-tipo')==='antecipacao'?'Antecipação':'Extensão';
+  let{setor}=getSetoresEVagas();
+  let prazo=val('cfg-prazo');
+  let msg=encodeURIComponent(
     `📋 *Confirmação de Extra · Meli*\n\n`+
     `📅 Data: ${data}\n`+
     `🔄 Tipo: ${tipo}\n`+
     `⏰ Turno: ${turno}\n`+
-    `🏭 Área: ${setor}\n\n`+
+    `🏭 Área: ${setor}\n`+
+    `⏳ Responda até: ${prazo}\n\n`+
     `Acesse o link e confirme sua aderência:\n${linkGerado}`
   );
   window.open('https://wa.me/?text='+msg,'_blank');
