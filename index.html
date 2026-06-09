@@ -387,13 +387,11 @@ function onAbrangencia(radio){
 function onChk(chk){
   let row=chk.closest('.chk-row');
   row.classList.toggle('checked',chk.checked);
-  let qtyId='qty-'+chk.value.toLowerCase();
-  if(chk.value==='outro'){
-    v('outro-input').classList.toggle('show',chk.checked);
-    qtyId='qty-outro';
-  }
-  let qty=document.getElementById(qtyId);
-  if(qty) qty.classList.toggle('show',chk.checked);
+  if(chk.value==='outro') v('outro-input').classList.toggle('show',chk.checked);
+  // Mostrar/ocultar campo de vagas para cada setor
+  let qtyMap={'ICQA':'qty-icqa','Picking':'qty-pick','Packing':'qty-pack','Inbound':'qty-inb','Shipping':'qty-ship','outro':'qty-outro'};
+  let qtyId=qtyMap[chk.value];
+  if(qtyId){let qty=v(qtyId);if(qty)qty.classList.toggle('show',chk.checked);}
 }
 
 function getSetoresEVagas(){
